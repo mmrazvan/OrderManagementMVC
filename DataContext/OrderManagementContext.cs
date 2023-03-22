@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using OrderManagementMVC.ViewModels;
 
 namespace OrderManagementMVC.Models
 {
@@ -21,7 +20,7 @@ namespace OrderManagementMVC.Models
 
         public virtual DbSet<LabelsModel> Labels { get; set; }
         public virtual DbSet<OrderLabelsModel> OrderLabels { get; set; }
-        public virtual DbSet<OrderTraceModel> OrderTrace { get; set; }
+        public virtual DbSet<OrderTrace> OrderTrace { get; set; }
         public virtual DbSet<OrdersModel> Orders { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -47,22 +46,24 @@ namespace OrderManagementMVC.Models
 
             modelBuilder.Entity<OrderLabelsModel>(entity =>
             {
-                entity.HasKey(e => e.IdBoxNumber);
-
-                entity.Property(e => e.IdBoxNumber).HasMaxLength(50);
+                entity.HasNoKey();
 
                 entity.Property(e => e.Id)
                     .ValueGeneratedOnAdd()
                     .HasColumnName("ID");
 
+                entity.Property(e => e.IdBoxNumber)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
                 entity.HasOne(d => d.OrderNumberNavigation)
-                    .WithMany(p => p.OrderLabels)
+                    .WithMany()
                     .HasForeignKey(d => d.OrderNumber)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OrderLabels_Orders");
             });
 
-            modelBuilder.Entity<OrderTraceModel>(entity =>
+            modelBuilder.Entity<OrderTrace>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
@@ -73,12 +74,6 @@ namespace OrderManagementMVC.Models
                     .HasMaxLength(50);
 
                 entity.Property(e => e.MachineId).HasMaxLength(5);
-
-                entity.HasOne(d => d.IdBoxNumberNavigation)
-                    .WithMany(p => p.OrderTrace)
-                    .HasForeignKey(d => d.IdBoxNumber)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_OrderTrace_OrderLabels");
             });
 
             modelBuilder.Entity<OrdersModel>(entity =>
@@ -124,7 +119,5 @@ namespace OrderManagementMVC.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-        public DbSet<OrderManagementMVC.ViewModels.OrderWithLabelsViewModel>? OrderWithLabelsViewModel { get; set; }
     }
 }

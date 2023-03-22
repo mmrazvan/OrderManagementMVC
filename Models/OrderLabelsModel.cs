@@ -7,11 +7,6 @@ namespace OrderManagementMVC.Models
 {
     public partial class OrderLabelsModel
     {
-        public OrderLabelsModel()
-        {
-            OrderTrace = new HashSet<OrderTraceModel>();
-        }
-
         public int Id { get; set; }
         public int OrderNumber { get; set; }
         public string IdBoxNumber { get; set; }
@@ -21,6 +16,5 @@ namespace OrderManagementMVC.Models
         public int Quantity { get; set; }
 
         public virtual OrdersModel OrderNumberNavigation { get; set; }
-        public virtual ICollection<OrderTraceModel> OrderTrace { get; set; }
     }
 }

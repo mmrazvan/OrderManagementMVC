@@ -5,13 +5,11 @@ using System.Collections.Generic;
 
 namespace OrderManagementMVC.Models
 {
-    public partial class OrderTraceModel
+    public partial class OrderTrace
     {
         public int Id { get; set; }
         public string IdBoxNumber { get; set; }
         public DateTime? DateOut { get; set; }
         public string MachineId { get; set; }
-
-        public virtual OrderLabelsModel IdBoxNumberNavigation { get; set; }
     }
 }
