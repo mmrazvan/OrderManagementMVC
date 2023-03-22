@@ -1,0 +1,24 @@
+{
+  "ServerUri": "http://localhost:9000",
+  "Organization": null,
+  "ProjectKey": "Test",
+  "ProjectName": "Test",
+  "Profiles": {
+    "CSharp": {
+      "ProfileKey": "AYbFWBZ2tHCKnHa3wReb",
+      "ProfileTimestamp": "2023-03-09T07:48:49Z"
+    },
+    "Js": {
+      "ProfileKey": "AYbFWBLWtHCKnHa3wRHg",
+      "ProfileTimestamp": "2023-03-09T07:48:48Z"
+    },
+    "Ts": {
+      "ProfileKey": "AYbFWCSUtHCKnHa3wSXv",
+      "ProfileTimestamp": "2023-03-09T07:48:53Z"
+    },
+    "Secrets": {
+      "ProfileKey": "AYbFWBRztHCKnHa3wRUD",
+      "ProfileTimestamp": "2023-03-09T07:48:49Z"
+    }
+  }
+}

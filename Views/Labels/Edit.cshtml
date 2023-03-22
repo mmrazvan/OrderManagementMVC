@@ -1,0 +1,44 @@
+﻿@model OrderManagementMVC.Models.LabelsModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Labels</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LabelId" />
+            <div class="form-group">
+                <label asp-for="LabelName" class="control-label"></label>
+                <input asp-for="LabelName" class="form-control" />
+                <span asp-validation-for="LabelName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Heigth" class="control-label"></label>
+                <input asp-for="Heigth" class="form-control" />
+                <span asp-validation-for="Heigth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Width" class="control-label"></label>
+                <input asp-for="Width" class="form-control" />
+                <span asp-validation-for="Width" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

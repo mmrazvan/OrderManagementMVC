@@ -1,0 +1,120 @@
+﻿@model IEnumerable<OrderManagementMVC.Models.OrdersModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Client)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocumentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocumentFormat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnvelopeType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PagesOnEnvelope)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LabelType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Completed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateInSystem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateFinished)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateInProduction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HasCustomSort)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomSortFile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomSortField)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocumentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocumentFormat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnvelopeType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PagesOnEnvelope)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabelType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Completed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateInSystem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateFinished)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateInProduction)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasCustomSort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomSortFile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomSortField)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.OrderNumber">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.OrderNumber">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.OrderNumber">Delete</a> |
+                @Html.ActionLink("OrderWithLabels", "OrderWithLabels", new { orderNumber = item.OrderNumber })                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

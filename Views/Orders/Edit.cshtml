@@ -1,0 +1,104 @@
+﻿@model OrderManagementMVC.Models.OrdersModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>OrdersModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="OrderNumber" />
+            <div class="form-group">
+                <label asp-for="Client" class="control-label"></label>
+                <input asp-for="Client" class="form-control" />
+                <span asp-validation-for="Client" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocumentName" class="control-label"></label>
+                <input asp-for="DocumentName" class="form-control" />
+                <span asp-validation-for="DocumentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocumentFormat" class="control-label"></label>
+                <input asp-for="DocumentFormat" class="form-control" />
+                <span asp-validation-for="DocumentFormat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnvelopeType" class="control-label"></label>
+                <input asp-for="EnvelopeType" class="form-control" />
+                <span asp-validation-for="EnvelopeType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PagesOnEnvelope" class="control-label"></label>
+                <input asp-for="PagesOnEnvelope" class="form-control" />
+                <span asp-validation-for="PagesOnEnvelope" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LabelType" class="control-label"></label>
+                <input asp-for="LabelType" class="form-control" />
+                <span asp-validation-for="LabelType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderStatus" class="control-label"></label>
+                <input asp-for="OrderStatus" class="form-control" />
+                <span asp-validation-for="OrderStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Completed" class="control-label"></label>
+                <input asp-for="Completed" class="form-control" />
+                <span asp-validation-for="Completed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateInSystem" class="control-label"></label>
+                <input asp-for="DateInSystem" class="form-control" />
+                <span asp-validation-for="DateInSystem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateFinished" class="control-label"></label>
+                <input asp-for="DateFinished" class="form-control" />
+                <span asp-validation-for="DateFinished" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateInProduction" class="control-label"></label>
+                <input asp-for="DateInProduction" class="form-control" />
+                <span asp-validation-for="DateInProduction" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasCustomSort" /> @Html.DisplayNameFor(model => model.HasCustomSort)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomSortFile" class="control-label"></label>
+                <input asp-for="CustomSortFile" class="form-control" />
+                <span asp-validation-for="CustomSortFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomSortField" class="control-label"></label>
+                <input asp-for="CustomSortField" class="form-control" />
+                <span asp-validation-for="CustomSortField" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
