@@ -20,7 +20,7 @@ namespace OrderManagementMVC.Models
 
         public virtual DbSet<LabelsModel> Labels { get; set; }
         public virtual DbSet<OrderLabelsModel> OrderLabels { get; set; }
-        public virtual DbSet<OrderTrace> OrderTrace { get; set; }
+        public virtual DbSet<OrderTraceModel> OrderTrace { get; set; }
         public virtual DbSet<OrdersModel> Orders { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -46,24 +46,20 @@ namespace OrderManagementMVC.Models
 
             modelBuilder.Entity<OrderLabelsModel>(entity =>
             {
-                entity.HasKey(e => e.Id);
-
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.IdBoxNumber)
                     .IsRequired()
                     .HasMaxLength(50);
 
                 entity.HasOne(d => d.OrderNumberNavigation)
-                    .WithMany()
+                    .WithMany(p => p.OrderLabels)
                     .HasForeignKey(d => d.OrderNumber)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OrderLabels_Orders");
             });
 
-            modelBuilder.Entity<OrderTrace>(entity =>
+            modelBuilder.Entity<OrderTraceModel>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
@@ -113,12 +109,6 @@ namespace OrderManagementMVC.Models
                 entity.Property(e => e.OrderStatus)
                     .IsRequired()
                     .HasMaxLength(20);
-
-                entity.HasOne(d => d.OrderNumberNavigation)
-                    .WithMany()
-                    .HasForeignKey(d => d.OrderNumber)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_OrderLabels_Orders");
             });
 
             OnModelCreatingPartial(modelBuilder);

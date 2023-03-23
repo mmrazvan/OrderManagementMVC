@@ -1,6 +1,6 @@
 ﻿using System.Collections.Immutable;
 
-namespace OrderManagementMVC
+namespace OrderManagementMVC.Helpers
 {
     public partial class DocumentFormats
     {

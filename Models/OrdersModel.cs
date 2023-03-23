@@ -7,6 +7,11 @@ namespace OrderManagementMVC.Models
 {
     public partial class OrdersModel
     {
+        public OrdersModel()
+        {
+            OrderLabels = new HashSet<OrderLabelsModel>();
+        }
+
         public int OrderNumber { get; set; }
         public string Client { get; set; }
         public string DocumentName { get; set; }
@@ -16,14 +21,14 @@ namespace OrderManagementMVC.Models
         public int PagesOnEnvelope { get; set; }
         public string LabelType { get; set; }
         public string OrderStatus { get; set; } = "New";
-        public int Completed { get; set; }
+        public int Completed { get; set; } = 0;
         public DateTime DateInSystem { get; set; } = DateTime.Now;
         public DateTime? DateFinished { get; set; }
         public DateTime? DateInProduction { get; set; }
-        public bool? HasCustomSort { get; set; } = false;
+        public bool? HasCustomSort { get; set; }
         public string CustomSortFile { get; set; }
         public string CustomSortField { get; set; }
 
-        public virtual OrderLabelsModel OrderNumberNavigation { get; set; }
+        public virtual ICollection<OrderLabelsModel> OrderLabels { get; set; }
     }
 }

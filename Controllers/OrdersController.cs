@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
 using OrderManagementMVC.Models;
 using OrderManagementMVC.Repositories;
+using OrderManagementMVC.ViewModels;
 
 namespace OrderManagementMVC.Controllers
 {
@@ -10,11 +10,13 @@ namespace OrderManagementMVC.Controllers
         private readonly OrdersRepository _repo;
         private readonly LabelsRepository _labelsRepo;
         private readonly OrderLabelsRepository _orderLabelsRepo;
-        public OrdersController(OrdersRepository repo, LabelsRepository labelsRepo, OrderLabelsRepository orderLabelsRepository)
+        private readonly OrderTraceRepository _orderTraceRepo;
+        public OrdersController(OrdersRepository repo, LabelsRepository labelsRepo, OrderLabelsRepository orderLabelsRepository, OrderTraceRepository orderTraceRepo)
         {
             _repo = repo;
             _labelsRepo = labelsRepo;
             _orderLabelsRepo = orderLabelsRepository;
+            _orderTraceRepo = orderTraceRepo;
         }
         public IActionResult Index()
         {
@@ -69,8 +71,15 @@ namespace OrderManagementMVC.Controllers
         public IActionResult Delete(int id, IFormCollection collection)
         {
             _orderLabelsRepo.DeleteAllOrderLabels(id);
+            _orderTraceRepo.DeleteOrderTraces(id);
             _repo.DeleteOrder(id);
             return RedirectToAction("Index");
-        } 
+        }
+
+        public IActionResult ViewTraces(int orderNumber)
+        {
+            OrderTraceView orderTraceView = _repo.GetOrderViewTraces(orderNumber);
+            return View("ViewTraces", orderTraceView);
+        }
     }
 }

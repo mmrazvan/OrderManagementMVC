@@ -3,7 +3,7 @@ using OrderManagementMVC.Repositories;
 
 namespace OrderManagementMVC.Helpers
 {
-    public class DataHelpers
+    public static class DataHelpers
     {
         public static List<OrderLabelsModel> CreateLabels(OrdersModel order)
         {
@@ -46,6 +46,21 @@ namespace OrderManagementMVC.Helpers
                 labels.Add(label);
             }
             return labels;
+        }
+
+        public static List<OrderTraceModel> CreateTraces(List<OrderLabelsModel> labels)
+        {
+            var traces = new List<OrderTraceModel>();
+            foreach (var label in labels)
+            {
+                OrderTraceModel trace = new OrderTraceModel
+                {
+                    IdBoxNumber = label.IdBoxNumber,
+                    OrderNumber = label.OrderNumber
+                };
+                traces.Add(trace);
+            }
+            return traces;
         }
         public static string GetIdBoxNumber(int orderNumber, int boxNumber)
         {

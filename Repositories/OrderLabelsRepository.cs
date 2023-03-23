@@ -26,7 +26,7 @@ namespace OrderManagementMVC.Repositories
             _context.SaveChanges();
         }
 
-        public IEnumerable<OrderLabelsModel> GetOrderLabelsById(int id)
+        public IEnumerable<OrderLabelsModel> GetOrderLabelsByOrderNumber(int id)
         {
             return _context.OrderLabels.Where(label => label.OrderNumber == id).ToList();
         }
@@ -41,5 +41,7 @@ namespace OrderManagementMVC.Repositories
             _context.OrderLabels.RemoveRange(GetLabelsFromOrder(orderNumber));
             _context.SaveChanges();
         }
+
+
     }
 }

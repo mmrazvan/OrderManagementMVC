@@ -2,13 +2,11 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace OrderManagementMVC.Models
 {
     public partial class OrderLabelsModel
     {
-        [Key]
         public int Id { get; set; }
         public int OrderNumber { get; set; }
         public string IdBoxNumber { get; set; }

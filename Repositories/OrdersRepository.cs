@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OrderManagementMVC.Helpers;
 using OrderManagementMVC.Models;
+using OrderManagementMVC.ViewModels;
 
 namespace OrderManagementMVC.Repositories
 {
@@ -29,6 +30,8 @@ namespace OrderManagementMVC.Repositories
             _context.Orders.Add(order);
             var labels = DataHelpers.CreateLabels(order);
             _context.OrderLabels.AddRange(labels);
+            var traces = DataHelpers.CreateTraces(labels);
+            _context.OrderTrace.AddRange(traces);
             _context.SaveChanges();
         }
 
@@ -57,6 +60,17 @@ namespace OrderManagementMVC.Repositories
         {
             var orders = GetAllOrders();
             return orders.Any() ? orders.Max(x => x.OrderNumber) + 1 : 1;
+        }
+
+        public OrderTraceView GetOrderViewTraces(int orderNumber)
+        {
+            var order = GetOrdersById(orderNumber);
+            var orderTraceView = new OrderTraceView();
+            orderTraceView.OrderNumber = orderNumber;
+            orderTraceView.ClientName = order.Client;
+            orderTraceView.Quantity = order.Quantity;
+            orderTraceView.orderTraceModels = _context.OrderTrace.Where(ot => ot.OrderNumber == orderNumber).ToList();
+            return orderTraceView;
         }
 
     }
