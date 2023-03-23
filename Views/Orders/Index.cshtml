@@ -36,27 +36,27 @@
             <th>
                 @Html.DisplayNameFor(model => model.OrderStatus)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Completed)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.DateInSystem)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.DateFinished)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.DateInProduction)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.HasCustomSort)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.CustomSortFile)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.CustomSortField)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -87,32 +87,31 @@
             <td>
                 @Html.DisplayFor(modelItem => item.OrderStatus)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Completed)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.DateInSystem)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.DateFinished)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.DateInProduction)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.HasCustomSort)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.CustomSortFile)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.CustomSortField)
-            </td>
+            </td>*@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.OrderNumber">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.OrderNumber">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrderNumber">Delete</a> |
-                @Html.ActionLink("OrderWithLabels", "OrderWithLabels", new { orderNumber = item.OrderNumber })                
+                <a asp-action="Delete" asp-route-id="@item.OrderNumber">Delete</a>             
             </td>
         </tr>
 }

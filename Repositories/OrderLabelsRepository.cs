@@ -30,5 +30,16 @@ namespace OrderManagementMVC.Repositories
         {
             return _context.OrderLabels.Where(label => label.OrderNumber == id).ToList();
         }
+
+        public List<OrderLabelsModel> GetLabelsFromOrder(int orderNumber)
+        {
+            return _context.OrderLabels.Where(label => label.OrderNumber ==  orderNumber).ToList();
+        }
+
+        public void DeleteAllOrderLabels(int orderNumber)
+        {
+            _context.OrderLabels.RemoveRange(GetLabelsFromOrder(orderNumber));
+            _context.SaveChanges();
+        }
     }
 }

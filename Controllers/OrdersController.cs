@@ -2,7 +2,6 @@
 
 using OrderManagementMVC.Models;
 using OrderManagementMVC.Repositories;
-using OrderManagementMVC.ViewModels;
 
 namespace OrderManagementMVC.Controllers
 {
@@ -10,10 +9,12 @@ namespace OrderManagementMVC.Controllers
     {
         private readonly OrdersRepository _repo;
         private readonly LabelsRepository _labelsRepo;
-        public OrdersController(OrdersRepository repo, LabelsRepository labelsRepo)
+        private readonly OrderLabelsRepository _orderLabelsRepo;
+        public OrdersController(OrdersRepository repo, LabelsRepository labelsRepo, OrderLabelsRepository orderLabelsRepository)
         {
             _repo = repo;
             _labelsRepo = labelsRepo;
+            _orderLabelsRepo = orderLabelsRepository;
         }
         public IActionResult Index()
         {
@@ -67,14 +68,9 @@ namespace OrderManagementMVC.Controllers
         [HttpPost]
         public IActionResult Delete(int id, IFormCollection collection)
         {
+            _orderLabelsRepo.DeleteAllOrderLabels(id);
             _repo.DeleteOrder(id);
             return RedirectToAction("Index");
-        }
-
-        public IActionResult OrderWithLabels(int orderNumber)
-        {
-            OrderWithLabelsViewModel model = _repo.GetOrderWithLabels(orderNumber);
-            return View("OrderWithLabels", model);
-        }
+        } 
     }
 }

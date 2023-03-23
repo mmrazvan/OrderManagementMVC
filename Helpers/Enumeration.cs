@@ -1,5 +1,5 @@
-﻿namespace OrderManagementMVC
-{   
+﻿namespace OrderManagementMVC.Helpers
+{
     public static class Enumeration
     {
         public static IDictionary<int, string> GetAll<TEnum>() where TEnum : struct
@@ -19,5 +19,5 @@
 
             return dictionary;
         }
-    }    
+    }
 }

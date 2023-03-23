@@ -15,13 +15,15 @@ namespace OrderManagementMVC.Models
         public int Quantity { get; set; }
         public int PagesOnEnvelope { get; set; }
         public string LabelType { get; set; }
-        public string OrderStatus { get; set; }
+        public string OrderStatus { get; set; } = "New";
         public int Completed { get; set; }
-        public DateTime DateInSystem { get; set; }
+        public DateTime DateInSystem { get; set; } = DateTime.Now;
         public DateTime? DateFinished { get; set; }
         public DateTime? DateInProduction { get; set; }
-        public bool? HasCustomSort { get; set; }
+        public bool? HasCustomSort { get; set; } = false;
         public string CustomSortFile { get; set; }
         public string CustomSortField { get; set; }
+
+        public virtual OrderLabelsModel OrderNumberNavigation { get; set; }
     }
 }

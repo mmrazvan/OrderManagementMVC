@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
+using OrderManagementMVC.Helpers;
 using OrderManagementMVC.Models;
-using OrderManagementMVC.ViewModels;
 
 namespace OrderManagementMVC.Repositories
 {
@@ -28,6 +27,8 @@ namespace OrderManagementMVC.Repositories
         {
             order.OrderNumber = GetOrderId();
             _context.Orders.Add(order);
+            var labels = DataHelpers.CreateLabels(order);
+            _context.OrderLabels.AddRange(labels);
             _context.SaveChanges();
         }
 
@@ -46,33 +47,11 @@ namespace OrderManagementMVC.Repositories
             var order = GetOrdersById(id);
             if ( order != null )
             {
+
                 _context.Orders.Remove(order);
                 _context.SaveChanges();
             }
-        }
-
-        public OrderWithLabelsViewModel GetOrderWithLabels(int orderNumber)
-        {
-            OrderWithLabelsViewModel orderWithLabels = new OrderWithLabelsViewModel();
-            
-            OrdersModel order = GetOrdersById(orderNumber);
-
-            orderWithLabels.OrderNumber = orderNumber;
-            orderWithLabels.LabelType = order.LabelType;
-            orderWithLabels.Quantity = order.Quantity;
-            orderWithLabels.DocumentFormat = order.DocumentFormat;
-            orderWithLabels.EnvelopeType = order.EnvelopeType;
-            orderWithLabels.PagesOnEnvelope = order.PagesOnEnvelope;
-            IEnumerable<OrderLabelsModel> labels = _context.OrderLabels.Where(x => x.OrderNumber == orderNumber);
-            if (!labels.Any())
-            {
-                foreach (var item in labels)
-                {
-                    orderWithLabels.OrderLabels.Add(item);
-                } 
-            }
-            return orderWithLabels;
-        }
+        }        
 
         private int GetOrderId()
         {

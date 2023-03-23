@@ -15,6 +15,8 @@ namespace OrderManagementMVC
             builder.Services.AddTransient<OrderManagementContext, OrderManagementContext>();
             builder.Services.AddTransient<LabelsRepository, LabelsRepository>();
             builder.Services.AddTransient<OrdersRepository, OrdersRepository>();
+            builder.Services.AddTransient<OrderLabelsRepository, OrderLabelsRepository>();
+
 
             var app = builder.Build();
 

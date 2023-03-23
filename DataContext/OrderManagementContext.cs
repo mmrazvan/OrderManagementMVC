@@ -46,7 +46,7 @@ namespace OrderManagementMVC.Models
 
             modelBuilder.Entity<OrderLabelsModel>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.Id);
 
                 entity.Property(e => e.Id)
                     .ValueGeneratedOnAdd()
@@ -113,6 +113,12 @@ namespace OrderManagementMVC.Models
                 entity.Property(e => e.OrderStatus)
                     .IsRequired()
                     .HasMaxLength(20);
+
+                entity.HasOne(d => d.OrderNumberNavigation)
+                    .WithMany()
+                    .HasForeignKey(d => d.OrderNumber)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_OrderLabels_Orders");
             });
 
             OnModelCreatingPartial(modelBuilder);

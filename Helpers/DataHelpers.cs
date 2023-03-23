@@ -1,20 +1,21 @@
 ﻿using OrderManagementMVC.Models;
 using OrderManagementMVC.Repositories;
 
-namespace OrderManagementMVC
+namespace OrderManagementMVC.Helpers
 {
     public class DataHelpers
     {
-        public IEnumerable<OrderLabelsModel> CreateLabels(OrdersModel order)
+        public static List<OrderLabelsModel> CreateLabels(OrdersModel order)
         {
-            int start = 1;
-            int stop = order.Quantity;
+            int totalCant = order.Quantity;
             int split = LabelManipulation.LabelsPerBox(order.PagesOnEnvelope, Enum.Parse<DocumentFormats.DocFormats>(order.DocumentFormat));
+            int dela = 1;
+            int panala = dela + split - 1;
             int nrCutie = 1;
 
             List<OrderLabelsModel> labels = new List<OrderLabelsModel>();
 
-            while (start <= stop)
+            while (panala <= totalCant)
             {
                 OrderLabelsModel label = new OrderLabelsModel
                 {
@@ -22,23 +23,33 @@ namespace OrderManagementMVC
                     BoxNumber = nrCutie,
                     IdBoxNumber = GetIdBoxNumber(order.OrderNumber, nrCutie),
                     Quantity = split,
-                    StartIndex = start,
-                    StopIndex = start + split - 1
+                    StartIndex = dela,
+                    StopIndex = panala
                 };
-                start = start + split;
                 nrCutie++;
+                dela += split;
+                panala += split;
                 labels.Add(label);
             }
-            if (stop - start +1 != 0)
+            if (totalCant - dela + 1 != 0)
             {
-                OrderLabelsModel label = new OrderLabelsModel();
+                OrderLabelsModel label = new OrderLabelsModel()
+                {
+                    OrderNumber = order.OrderNumber,
+                    BoxNumber = nrCutie,
+                    IdBoxNumber = GetIdBoxNumber(order.OrderNumber, nrCutie),
+                    Quantity = totalCant - dela + 1,
+                    StartIndex = dela,
+                    StopIndex = totalCant
+                };
+
                 labels.Add(label);
             }
             return labels;
         }
         public static string GetIdBoxNumber(int orderNumber, int boxNumber)
         {
-            return orderNumber.ToString().PadLeft(6,'0') + boxNumber.ToString().PadLeft(4,'0');
+            return orderNumber.ToString().PadLeft(6, '0') + boxNumber.ToString().PadLeft(4, '0');
         }
     }
 }
