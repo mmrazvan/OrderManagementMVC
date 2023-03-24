@@ -2,12 +2,14 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace OrderManagementMVC.Models
 {
     public partial class LabelsModel
     {
         public int LabelId { get; set; }
+        [Required]
         public string LabelName { get; set; }
         public float Heigth { get; set; }
         public float Width { get; set; }

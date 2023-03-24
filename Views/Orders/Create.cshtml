@@ -31,14 +31,14 @@
                 <label asp-for="DocumentFormat" class="control-label"></label>
                 @*<input asp-for="DocumentFormat" class="form-control" />
         <span asp-validation-for="DocumentFormat" class="text-danger"></span>*@
-                @Html.DropDownList("DocumentFormat", new SelectList(Enumeration.GetAll<DocumentFormats.DocFormats>(), "Value", "Value"));
+                @Html.DropDownList("DocumentFormat", new SelectList(Enumeration.GetAll<DocumentFormats.DocFormats>(), "Value", "Value"), new { style = "width: 286px; height:30px" })
 
             </div>
             <div class="form-group">
                 <label asp-for="EnvelopeType" class="control-label"></label>
                 @*<input asp-for="EnvelopeType" class="form-control" />
                 <span asp-validation-for="EnvelopeType" class="text-danger"></span>*@
-                @Html.DropDownList("EnvelopeType", new SelectList(Enumeration.GetAll<DocumentFormats.EnvelopeType>(),"Value", "Value"));
+                @Html.DropDownList("EnvelopeType", new SelectList(Enumeration.GetAll<DocumentFormats.EnvelopeType>(),"Value", "Value"), new { style = "width: 313px; height:30px" })
             </div>
             <div class="form-group">
                 <label asp-for="Quantity" class="control-label"></label>
@@ -54,7 +54,7 @@
                 <label asp-for="LabelType" class="control-label"></label>
                 @*<input asp-for="LabelType" class="form-control" />
         <span asp-validation-for="LabelType" class="text-danger"></span>*@
-                @Html.DropDownList("LabelType", new SelectList(ViewBag.Labels, "LabelName", "LabelName"))
+                @Html.DropDownList("LabelType", new SelectList(ViewBag.Labels, "LabelName", "LabelName"), new { style = "width: 340px; height:30px" })
             </div>
             @*<div class="form-group">
                 <label asp-for="OrderStatus" class="control-label"></label>
@@ -81,21 +81,21 @@
                 <input asp-for="DateInProduction" class="form-control" />
                 <span asp-validation-for="DateInProduction" class="text-danger"></span>
             </div>*@
-            <div class="form-group form-check">
+            @*<div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="HasCustomSort" /> @Html.DisplayNameFor(model => model.HasCustomSort)
                 </label>
-            </div>
-            <div class="form-group">
+            </div>*@
+            @*<div class="form-group">
                 <label asp-for="CustomSortFile" class="control-label"></label>
                 <input asp-for="CustomSortFile" class="form-control" />
                 <span asp-validation-for="CustomSortFile" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            </div>*@
+            @*<div class="form-group">
                 <label asp-for="CustomSortField" class="control-label"></label>
                 <input asp-for="CustomSortField" class="form-control" />
                 <span asp-validation-for="CustomSortField" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

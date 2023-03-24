@@ -43,6 +43,7 @@ namespace OrderManagementMVC.Controllers
         public IActionResult Details(int id)
         {
             var order = _repo.GetOrdersById(id);
+            _repo.UpdateOrderInternal(id);
             return View("Details", order);
         }
 
@@ -76,9 +77,9 @@ namespace OrderManagementMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult ViewTraces(int orderNumber)
+        public ActionResult ViewTraces(int id)
         {
-            OrderTraceView orderTraceView = _repo.GetOrderViewTraces(orderNumber);
+            OrderTraceView orderTraceView = _repo.GetOrderViewTraces(id);
             return View("ViewTraces", orderTraceView);
         }
     }

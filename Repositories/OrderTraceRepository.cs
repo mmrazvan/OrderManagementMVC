@@ -17,6 +17,16 @@ namespace OrderManagementMVC.Repositories
             _context.SaveChanges();
         }
 
+        public OrderTraceModel GetOrderTrace(int orderNumber) 
+        {
+            OrderTraceModel orderTrace =  _context.OrderTrace.FirstOrDefault(ot => ot.OrderNumber == orderNumber);
+            if (orderTrace == null)
+            {
+                return null;
+            }
+            return orderTrace;
+        }
+
         public List<OrderTraceModel> GetOrderTraces(int orderNumber) 
         {
             return _context.OrderTrace.Where(ot => ot.OrderNumber == orderNumber).ToList();
@@ -27,6 +37,13 @@ namespace OrderManagementMVC.Repositories
             _context.OrderTrace.RemoveRange(GetOrderTraces(orderNumber));
             _context.SaveChanges();
         }
-        
+
+        public void UpdateTrace(int orderNumber, string mId) 
+        {
+            OrderTraceModel orderTrace = GetOrderTrace(orderNumber);
+            orderTrace.MachineId = mId;
+            _context.OrderTrace.Update(orderTrace);
+            _context.SaveChanges();
+        }        
     }
 }

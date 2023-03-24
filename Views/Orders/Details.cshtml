@@ -10,99 +10,106 @@
     <h4>OrdersModel</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Client)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Client)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DocumentName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DocumentName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DocumentFormat)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DocumentFormat)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.EnvelopeType)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.EnvelopeType)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Quantity)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Quantity)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.PagesOnEnvelope)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.PagesOnEnvelope)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.LabelType)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.LabelType)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.OrderStatus)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.OrderStatus)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Completed)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Completed)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DateInSystem)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateInSystem)
+        <dd class="col-sm-10">
+            @*@Html.DisplayFor(model => model.DateInSystem)*@
+            @Convert.ToDateTime(Model.DateInSystem).ToString("dd.MM.yyyy HH:mm", new System.Globalization.CultureInfo("ro-RO"))
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateFinished)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateFinished)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DateInProduction)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateInProduction)
+        <dd class="col-sm-10">
+            @if (Model.DateInProduction != null)
+            {
+                Convert.ToDateTime(Model.DateInProduction).ToString("dd.MM.yyyy HH:mm", new System.Globalization.CultureInfo("ro-RO"));
+            }
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateFinished)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.DateFinished != null)
+            {
+                Convert.ToDateTime(Model.DateFinished).ToString("dd.MM.yyyy HH:mm", new System.Globalization.CultureInfo("ro-RO"));
+            }
+        </dd>
+
+        @*<dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.HasCustomSort)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.HasCustomSort)
-        </dd>
-        <dt class = "col-sm-2">
+        </dd>*@
+        @*<dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CustomSortFile)
-        </dt>
-        <dd class = "col-sm-10">
+        </dt>*@
+        @*<dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CustomSortFile)
-        </dd>
-        <dt class = "col-sm-2">
+        </dd>*@
+        @*<dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CustomSortField)
-        </dt>
-        <dd class = "col-sm-10">
+        </dt>*@
+        @*<dd class = "col-sm-10">
             @Html.DisplayFor(model => model.CustomSortField)
-        </dd>
+        </dd>*@
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.OrderNumber">Edit</a> |
+<div>|
     <a asp-action="Index">Back to List</a>
 </div>

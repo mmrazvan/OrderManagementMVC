@@ -28,8 +28,10 @@ namespace OrderManagementMVC.Repositories
         {
             order.OrderNumber = GetOrderId();
             _context.Orders.Add(order);
+            _context.SaveChanges();
             var labels = DataHelpers.CreateLabels(order);
             _context.OrderLabels.AddRange(labels);
+            _context.SaveChanges();
             var traces = DataHelpers.CreateTraces(labels);
             _context.OrderTrace.AddRange(traces);
             _context.SaveChanges();
@@ -65,13 +67,46 @@ namespace OrderManagementMVC.Repositories
         public OrderTraceView GetOrderViewTraces(int orderNumber)
         {
             var order = GetOrdersById(orderNumber);
-            var orderTraceView = new OrderTraceView();
-            orderTraceView.OrderNumber = orderNumber;
-            orderTraceView.ClientName = order.Client;
-            orderTraceView.Quantity = order.Quantity;
-            orderTraceView.orderTraceModels = _context.OrderTrace.Where(ot => ot.OrderNumber == orderNumber).ToList();
+            var orderTraceView = new OrderTraceView
+            {
+                OrderNumber = orderNumber,
+                ClientName = order.Client,
+                Quantity = order.Quantity,
+                orderTraceModels = _context.OrderTrace.Where(ot => ot.OrderNumber == orderNumber).ToList()
+            };
             return orderTraceView;
         }
 
+        public void UpdateOrderInternal(int orderNumber)
+        {
+            var order = GetOrdersById(orderNumber);
+            if (order.OrderStatus == "Finished")
+                return;
+            var orderTraces = _context.OrderTrace.Where(ot => ot.OrderNumber == orderNumber).Where(ot => ot.MachineId != null);
+            if (!orderTraces.Any())
+                return;
+            if (order.OrderStatus == "New")            
+            {
+                order.OrderStatus = "Production";
+                order.DateInProduction = DateTime.Now;
+            }
+            
+            var labels = _context.OrderLabels.Where(l => orderTraces.Any(ot => ot.IdBoxNumber == l.IdBoxNumber)).ToList();
+            int total = 0;
+            foreach (var trace in orderTraces)
+            {
+                if (trace.MachineId != null)
+                {
+                    total = total + labels.FirstOrDefault(l => l.IdBoxNumber == trace.IdBoxNumber).Quantity;
+                }
+            }
+            order.Completed = total;
+            if (order.Completed == order.Quantity)
+            {
+                order.OrderStatus = "Finished";
+                order.DateFinished = DateTime.Now;
+            }
+            UpdateOrder(orderNumber);
+        }
     }
 }

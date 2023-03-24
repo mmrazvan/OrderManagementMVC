@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using OrderManagementMVC.ViewModels;
 
 namespace OrderManagementMVC.Models
 {
@@ -115,5 +116,6 @@ namespace OrderManagementMVC.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
     }
 }

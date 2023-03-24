@@ -39,9 +39,9 @@
             @*<th>
                 @Html.DisplayNameFor(model => model.Completed)
             </th>*@
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.DateInSystem)
-            </th>
+            </th>*@
             @*<th>
                 @Html.DisplayNameFor(model => model.DateFinished)
             </th>*@
@@ -90,9 +90,9 @@
             @*<td>
                 @Html.DisplayFor(modelItem => item.Completed)
             </td>*@
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.DateInSystem)
-            </td>
+            </td>*@
             @*<td>
                 @Html.DisplayFor(modelItem => item.DateFinished)
             </td>*@
@@ -108,11 +108,12 @@
             @*<td>
                 @Html.DisplayFor(modelItem => item.CustomSortField)
             </td>*@
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.OrderNumber">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.OrderNumber">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrderNumber">Delete</a>             
-            </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.OrderNumber">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.OrderNumber">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.OrderNumber">Delete</a>|            |
+            <a asp-action="ViewTraces" asp-route-id="@item.OrderNumber">ViewTraces</a>
+        </td>
         </tr>
 }
     </tbody>
