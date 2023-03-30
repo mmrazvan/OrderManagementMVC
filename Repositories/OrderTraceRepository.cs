@@ -1,4 +1,6 @@
-﻿using OrderManagementMVC.Models;
+﻿using Microsoft.EntityFrameworkCore;
+
+using OrderManagementMVC.Models;
 
 namespace OrderManagementMVC.Repositories
 {
@@ -11,10 +13,20 @@ namespace OrderManagementMVC.Repositories
             _context = context;
         }
 
+        public DbSet<OrderTraceModel> GetAllTraces()
+        {
+            return _context.OrderTrace;
+        }
+
         public void AddOrderTraces(List<OrderTraceModel> traces)
         {
             _context.OrderTrace.AddRange(traces);
             _context.SaveChanges();
+        }
+
+        public OrderTraceModel GetOrderTraceById(int id)
+        {
+            return _context.OrderTrace.FirstOrDefault(t => t.Id == id);
         }
 
         public OrderTraceModel GetOrderTrace(int orderNumber) 

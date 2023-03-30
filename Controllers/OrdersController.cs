@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
+using OrderManagementMVC.Helpers;
 using OrderManagementMVC.Models;
 using OrderManagementMVC.Repositories;
 using OrderManagementMVC.ViewModels;
+
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace OrderManagementMVC.Controllers
 {
@@ -22,6 +26,16 @@ namespace OrderManagementMVC.Controllers
         {
             var orders = _repo.GetAllOrders();
             return View("Index", orders);
+        }
+        
+        public IActionResult DownloadLabels(int id)
+        {
+            var order = _repo.GetOrdersById(id);
+            var orderLabels = _orderLabelsRepo.GetLabelsFromOrder(id);
+            var labelType = _labelsRepo.GetLabelByName(order.LabelType);
+            byte[] pdfFile = PdfHelper.CreateLabel(order, orderLabels, labelType);            
+            System.IO.File.WriteAllBytes("D:\\label.pdf", pdfFile);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Create()
@@ -81,6 +95,15 @@ namespace OrderManagementMVC.Controllers
         {
             OrderTraceView orderTraceView = _repo.GetOrderViewTraces(id);
             return View("ViewTraces", orderTraceView);
+        }
+
+        public IActionResult PostAndShow(int id)
+        {
+            var order = _repo.GetOrdersById(id);
+            var orderLabels = _orderLabelsRepo.GetLabelsFromOrder(id);
+            var labelType = _labelsRepo.GetLabelByName(order.LabelType);
+            byte[] pdfFile = PdfHelper.CreateLabel(order, orderLabels, labelType);
+            return new FileStreamResult(new MemoryStream(pdfFile), "application/pdf");
         }
     }
 }

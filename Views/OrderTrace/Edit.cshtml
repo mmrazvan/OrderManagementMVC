@@ -1,0 +1,53 @@
+﻿@model OrderManagementMVC.Models.OrderTraceModel
+@using OrderManagementMVC.Helpers
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>OrderTraceModel</h4>
+<hr />
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="OrderNumber" class="control-label"></label>
+                <input asp-for="OrderNumber" class="form-control" readonly/>
+                <span asp-validation-for="OrderNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdBoxNumber" class="control-label"></label>
+                <input asp-for="IdBoxNumber" class="form-control" readonly/>
+                <span asp-validation-for="IdBoxNumber" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="DateOut" class="control-label"></label>
+                <input asp-for="DateOut" class="form-control" />
+                <span asp-validation-for="DateOut" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="MachineId" class="control-label"></label>
+                @*<input asp-for="MachineId" class="form-control" />
+                    <span asp-validation-for="MachineId" class="text-danger"></span>*@
+                @Html.DropDownList("MachineID", new SelectList(Enumeration.GetAll<Machines.MachineId>(), "Value", "Value"), new { style = "width: 286px; height:30px" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,5 +1,4 @@
 ﻿using OrderManagementMVC.Models;
-using OrderManagementMVC.Repositories;
 
 namespace OrderManagementMVC.Helpers
 {

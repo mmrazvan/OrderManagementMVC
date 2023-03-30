@@ -43,6 +43,16 @@ namespace OrderManagementMVC.Repositories
             if (order != null)
             {
                 _context.Orders.Update(order);
+
+                var oldLabels = _context.OrderLabels.Where(l => l.OrderNumber == id);
+                _context.OrderLabels.RemoveRange(oldLabels);
+                var labels = DataHelpers.CreateLabels(order);
+                _context.OrderLabels.AddRange(labels);
+                
+                var oldTraces = _context.OrderTrace.Where(ot => ot.OrderNumber == id);
+                _context.OrderTrace.RemoveRange(oldTraces);
+                var traces = DataHelpers.CreateTraces(labels);
+                _context.OrderTrace.AddRange(traces);
                 _context.SaveChanges();
             }
         }

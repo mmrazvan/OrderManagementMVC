@@ -37,84 +37,102 @@
                 @Html.DisplayNameFor(model => model.OrderStatus)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.Completed)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.Completed)
+                </th>*@
             @*<th>
-                @Html.DisplayNameFor(model => model.DateInSystem)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.DateInSystem)
+                </th>*@
             @*<th>
-                @Html.DisplayNameFor(model => model.DateFinished)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.DateFinished)
+                </th>*@
             @*<th>
-                @Html.DisplayNameFor(model => model.DateInProduction)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.DateInProduction)
+                </th>*@
             @*<th>
-                @Html.DisplayNameFor(model => model.HasCustomSort)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.HasCustomSort)
+                </th>*@
             @*<th>
-                @Html.DisplayNameFor(model => model.CustomSortFile)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.CustomSortFile)
+                </th>*@
             @*<th>
-                @Html.DisplayNameFor(model => model.CustomSortField)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.CustomSortField)
+                </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Client)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DocumentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DocumentFormat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnvelopeType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PagesOnEnvelope)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LabelType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderStatus)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Completed)
-            </td>*@
-            @*<td>
-                @Html.DisplayFor(modelItem => item.DateInSystem)
-            </td>*@
-            @*<td>
-                @Html.DisplayFor(modelItem => item.DateFinished)
-            </td>*@
-            @*<td>
-                @Html.DisplayFor(modelItem => item.DateInProduction)
-            </td>*@
-            @*<td>
-                @Html.DisplayFor(modelItem => item.HasCustomSort)
-            </td>*@
-            @*<td>
-                @Html.DisplayFor(modelItem => item.CustomSortFile)
-            </td>*@
-            @*<td>
-                @Html.DisplayFor(modelItem => item.CustomSortField)
-            </td>*@
-        <td>
-            <a asp-action="Edit" asp-route-id="@item.OrderNumber">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.OrderNumber">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.OrderNumber">Delete</a>|            |
-            <a asp-action="ViewTraces" asp-route-id="@item.OrderNumber">ViewTraces</a>
-        </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocumentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocumentFormat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnvelopeType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PagesOnEnvelope)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LabelType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderStatus)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.Completed)
+        </td>*@
+                @*<td>
+            @Html.DisplayFor(modelItem => item.DateInSystem)
+        </td>*@
+                @*<td>
+            @Html.DisplayFor(modelItem => item.DateFinished)
+        </td>*@
+                @*<td>
+            @Html.DisplayFor(modelItem => item.DateInProduction)
+        </td>*@
+                @*<td>
+            @Html.DisplayFor(modelItem => item.HasCustomSort)
+        </td>*@
+                @*<td>
+            @Html.DisplayFor(modelItem => item.CustomSortFile)
+        </td>*@
+                @*<td>
+            @Html.DisplayFor(modelItem => item.CustomSortField)
+        </td>*@
+                <td>
+                    @if (item.OrderStatus == "New")
+                    {
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.OrderNumber }) |
+                        @Html.ActionLink("Edit", "Edit", new { id = item.OrderNumber }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.OrderNumber })
+
+                    </td>
+                }
+                    @if (item.OrderStatus == "Production")
+                    {
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id = item.OrderNumber })
+                        </td>
+                    }
+                    @if (item.OrderStatus == "Finished")
+                    {
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { id = item.OrderNumber }) |                        
+                            @Html.ActionLink("Delete", "Delete", new { id = item.OrderNumber })
+                        </td>
+                    }
+                </tr>
+            }
     </tbody>
 </table>

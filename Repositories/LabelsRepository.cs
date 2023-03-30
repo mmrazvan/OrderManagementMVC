@@ -17,6 +17,11 @@ namespace OrderManagementMVC.Repositories
             return _context.Labels;
         }
 
+        public LabelsModel GetLabelByName(string name)
+        {
+            return _context.Labels.FirstOrDefault(l => l.LabelName == name);
+        }
+
         public LabelsModel GetLabelById(int id)
         {
             return _context.Labels.FirstOrDefault(x => x.LabelId == id);
