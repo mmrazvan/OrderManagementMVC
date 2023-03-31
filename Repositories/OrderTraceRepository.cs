@@ -29,15 +29,15 @@ namespace OrderManagementMVC.Repositories
             return _context.OrderTrace.FirstOrDefault(t => t.Id == id);
         }
 
-        public OrderTraceModel GetOrderTrace(int orderNumber) 
-        {
-            OrderTraceModel orderTrace =  _context.OrderTrace.FirstOrDefault(ot => ot.OrderNumber == orderNumber);
-            if (orderTrace == null)
-            {
-                return null;
-            }
-            return orderTrace;
-        }
+        //public OrderTraceModel GetOrderTrace(int orderNumber) 
+        //{
+        //    OrderTraceModel orderTrace =  _context.OrderTrace.FirstOrDefault(ot => ot.Id == orderNumber);
+        //    if (orderTrace == null)
+        //    {
+        //        return null;
+        //    }
+        //    return orderTrace;
+        //}
 
         public List<OrderTraceModel> GetOrderTraces(int orderNumber) 
         {
@@ -50,10 +50,8 @@ namespace OrderManagementMVC.Repositories
             _context.SaveChanges();
         }
 
-        public void UpdateTrace(int orderNumber, string mId) 
+        public void UpdateTrace(OrderTraceModel orderTrace) 
         {
-            OrderTraceModel orderTrace = GetOrderTrace(orderNumber);
-            orderTrace.MachineId = mId;
             _context.OrderTrace.Update(orderTrace);
             _context.SaveChanges();
         }        

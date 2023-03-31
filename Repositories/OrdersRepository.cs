@@ -40,7 +40,7 @@ namespace OrderManagementMVC.Repositories
         public void UpdateOrder(int id) 
         {
             var order = GetOrdersById(id);
-            if (order != null)
+            if (order != null && order.OrderStatus=="New")
             {
                 _context.Orders.Update(order);
 
@@ -116,7 +116,8 @@ namespace OrderManagementMVC.Repositories
                 order.OrderStatus = "Finished";
                 order.DateFinished = DateTime.Now;
             }
-            UpdateOrder(orderNumber);
+            _context.Orders.Update(order);
+            _context.SaveChanges();
         }
     }
 }
