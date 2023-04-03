@@ -1,4 +1,4 @@
-using OrderManagementMVC.Models;
+using OrderManagementMVC.DataContext;
 using OrderManagementMVC.Repositories;
 
 namespace OrderManagementMVC

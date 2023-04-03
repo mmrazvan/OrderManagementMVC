@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
+using OrderManagementMVC.DataContext;
 using OrderManagementMVC.Models;
 
 namespace OrderManagementMVC.Repositories

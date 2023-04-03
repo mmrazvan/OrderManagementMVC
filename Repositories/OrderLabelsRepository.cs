@@ -1,4 +1,5 @@
-﻿using OrderManagementMVC.Models;
+﻿using OrderManagementMVC.DataContext;
+using OrderManagementMVC.Models;
 
 namespace OrderManagementMVC.Repositories
 {

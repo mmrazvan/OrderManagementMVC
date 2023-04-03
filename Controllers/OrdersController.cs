@@ -5,8 +5,6 @@ using OrderManagementMVC.Models;
 using OrderManagementMVC.Repositories;
 using OrderManagementMVC.ViewModels;
 
-using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
-
 namespace OrderManagementMVC.Controllers
 {
     public class OrdersController : Controller
