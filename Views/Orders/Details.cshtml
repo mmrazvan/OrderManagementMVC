@@ -77,7 +77,7 @@
         <dd class="col-sm-10">
             @if (Model.DateInProduction != null)
             {
-                Convert.ToDateTime(Model.DateInProduction).ToString("dd.MM.yyyy HH:mm", new System.Globalization.CultureInfo("ro-RO"));
+                @Convert.ToDateTime(Model.DateInProduction).ToString("dd.MM.yyyy HH:mm", new System.Globalization.CultureInfo("ro-RO"));
             }
         </dd>
         <dt class="col-sm-2">
@@ -86,7 +86,7 @@
         <dd class="col-sm-10">
             @if (Model.DateFinished != null)
             {
-                Convert.ToDateTime(Model.DateFinished).ToString("dd.MM.yyyy HH:mm", new System.Globalization.CultureInfo("ro-RO"));
+                @Convert.ToDateTime(Model.DateFinished).ToString("dd.MM.yyyy HH:mm", new System.Globalization.CultureInfo("ro-RO"));
             }
         </dd>
 

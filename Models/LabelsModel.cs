@@ -9,7 +9,7 @@ namespace OrderManagementMVC.Models
         [StringLength(10, MinimumLength =1)]
         public string LabelName { get; set; }
         [Required]
-        [Range(50, 150)]
+        [Range(25, 150)]
         public float Heigth { get; set; }
         [Required]
         [Range(50, 150)]
