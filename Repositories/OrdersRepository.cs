@@ -109,7 +109,7 @@ namespace OrderManagementMVC.Repositories
             {
                 if (trace.MachineId != null)
                 {
-                    total = total + labels.FirstOrDefault(l => l.IdBoxNumber == trace.IdBoxNumber).Quantity;
+                    total += labels.FirstOrDefault(l => l.IdBoxNumber == trace.IdBoxNumber).Quantity;
                 }
             }
             order.Completed = total;

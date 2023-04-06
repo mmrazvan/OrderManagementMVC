@@ -14,13 +14,11 @@ namespace OrderManagementMVC.Controllers
             _repository = repository;
             _ordersRepository = ordersRepository;
         }
-        // GET: OrderTraceController
         public ActionResult Index()
         {
             var traces = _repository.GetAllTraces();
             return View("Index", traces);
         }
-
                              
         public ActionResult Edit(int id)
         {

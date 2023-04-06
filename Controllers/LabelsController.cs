@@ -35,9 +35,6 @@ namespace OrderManagementMVC.Controllers
             return View("Create");
         }
 
-        // POST: Labels/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(IFormCollection collection)
@@ -48,7 +45,6 @@ namespace OrderManagementMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Labels/Edit/5
         public IActionResult Edit(int id)
         {
             var label = _repository.GetLabelById(id);

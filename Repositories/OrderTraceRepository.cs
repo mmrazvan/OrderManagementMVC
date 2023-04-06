@@ -29,17 +29,6 @@ namespace OrderManagementMVC.Repositories
         {
             return _context.OrderTrace.FirstOrDefault(t => t.Id == id);
         }
-
-        //public OrderTraceModel GetOrderTrace(int orderNumber) 
-        //{
-        //    OrderTraceModel orderTrace =  _context.OrderTrace.FirstOrDefault(ot => ot.Id == orderNumber);
-        //    if (orderTrace == null)
-        //    {
-        //        return null;
-        //    }
-        //    return orderTrace;
-        //}
-
         public List<OrderTraceModel> GetOrderTraces(int orderNumber) 
         {
             return _context.OrderTrace.Where(ot => ot.OrderNumber == orderNumber).ToList();

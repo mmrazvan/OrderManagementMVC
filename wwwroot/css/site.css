@@ -14,5 +14,9 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-image: url("bowe.png");
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: 50% 90%
 }
