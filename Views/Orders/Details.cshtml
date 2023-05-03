@@ -89,25 +89,6 @@
                 @Convert.ToDateTime(Model.DateFinished).ToString("dd.MM.yyyy HH:mm", new System.Globalization.CultureInfo("ro-RO"));
             }
         </dd>
-
-        @*<dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HasCustomSort)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HasCustomSort)
-        </dd>*@
-        @*<dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustomSortFile)
-        </dt>*@
-        @*<dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustomSortFile)
-        </dd>*@
-        @*<dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CustomSortField)
-        </dt>*@
-        @*<dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CustomSortField)
-        </dd>*@
         <dd class="col-sm-10">
             <iframe src="@Url.Action("PostAndShow", new { id = Model.OrderNumber } )" width="600" height="600"></iframe>
         </dd>
